@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body{
+            height: 100vh;
+            background-color: aquamarine;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #container{
+            background-color: cadetblue;
+            height: 500px;
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        #login-form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+                }
+
+        label{
+            margin: 15px;
+            font-size: 1.2rem;
+        }
+
+        input{
+            width: 180px;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: beige;
+            border-style: none;
+             }
+
+        input[type="submit"]{
+            margin: 20px;
+            font-size: 1.4rem;
+            background-color: royalblue;
+            color: #fff;
+                    }  
+                    
+        .error{
+            color: red;
+            font-style: italic;
+            font-size: small;
+            /* display: none; */
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+
+        <div class="login">
+        <h2>Login Form </h2>
+        <p>Pls fill up all credentions before submit.</p>
+        </div>
+        
+        <form action="" id="login-form" onsubmit="return validateForm()">
+            <!--  If validateForm() returns true, the form submission proceeds; if it returns false, the form submission is prevented. -->
+            <label for="username">Username </label>
+            <input type="text" id="username" placeholder="type username">
+            <p class="error" id="userErr"></p>
+
+            <label for="password">Password </label>
+            <input type="number" id="password" placeholder="type password">
+            <p class="error" id="pwrErr"></p>
+
+            <input type="Submit" value="Submit">
+        </form>
+    </div>
+    
+
+    <script>
+const username = document.querySelector("#username");
+const password = document.querySelector("#password");
+let okFlag=0;  // boolean true=1, false=0
+
+function validateForm() {
+    let userError= document.querySelector("#userErr");
+    let pwError= document.querySelector("#pwrErr");
+    if(username.value==""){
+    userError.innerHTML="Error: username cant be empty";
+    okFlag=0;
+    }
+    else if(username.value.length<5){
+        userError.innerHTML="Error: enter atleast 5 alphabets";
+        okFlag=0;
+    }
+    else{
+        userError.innerHTML="";
+        okFlag=1;
+    }
+    if(password.value ==""){
+        pwError.innerHTML="Error: password cant be empty";
+        okFlag=0;
+    }
+    else{
+        pwError.innerHTML="";
+        okFlag=1;
+    }
+    
+    if(okFlag){ // okFlag means okFlag=1/true
+        return true; 
+    }
+    else{
+        return false; 
+    }
+   }
+    </script>
+</body>
+</html>
